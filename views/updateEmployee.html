@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodlist</title>
+</head>
+<body>
+    
+    <div id="container">
+        
+        <h1>Enter your Favorite food</h1>
+        <nav>
+            <a href="#">Enter Food</a>
+            <a href="foodlist.html">Look at food</a>
+
+        </nav>
+        <form action="/updateEmployee" method="post">
+
+            <span id="err" style="color:red;"></span>
+            <br>
+            <label for="food">Enter your Name here:</label>
+            <input type="text" id="employeeID" name="_id"  readonly hidden>
+            <input type="text" name="employeeFirstName" id="employeeFirstNameTxt" placeholder="">
+            <input type="text" name="employeeLastName" id="employeeLastNameTxt" placeholder="">
+            <br>
+            <button type="submit">Submit Food to Database</button>
+        </form>
+
+    </div>
+    <script>
+
+        const allEncryptedVariables = window.location.search;
+       
+        const decryptedURLVariables = atob(allEncryptedVariables.substring(1))
+        
+        const parsedURLVariablesArray = new URLSearchParams(decryptedURLVariables);
+
+        let _id = parsedURLVariablesArray.get("_id");
+        let employeeFirstName = parsedURLVariablesArray.get("employeeFirstName")
+        let employeeLastName = parsedURLVariablesArray.get("employeeLastName")
+
+        let idTextBox = document.querySelector("#employeeID")
+        let employeeFirstNameTextBox = document.querySelector("#employeeFirstNameTxt")
+        let employeeLastNameTextBox = document.querySelector("#employeeLastNameTxt")
+
+
+        employeeFirstNameTextBox.value = employeeFirstName
+        employeeLastNameTextBox.value = employeeLastName
+        idTextBox.value = _id
+
+
+    
+    </script>
+</body>
+</html>

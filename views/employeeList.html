@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Advanced Web Developement</title>
+
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="../resources/css/styles.css" rel="stylesheet" />
+
+        <style>
+            .indexContent{
+                margin-top:7%;
+                height:auto;
+            }
+
+            
+            body{
+                margin-top:20vh;
+            }
+        </style>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index">Adv Web</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/form">Form</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="container"> 
+
+    <h1>Here is your list of Employees</h1>
+    <nav>
+        <a href="index.html">Enter Food</a>
+        <a href="#">Look at food</a>
+
+    </nav>
+
+
+    <br><center><h4>Jordan the data below is the same JSON data but passed through variables from the server</h4></center><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">Salary</th>
+        </tr>
+        </thead>
+        <tbody class="tbody-users">
+            <td>h</td>
+            <td>ghj</td>
+            <td>ghj</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tbody>
+    </table>
+
+    <br/>
+    <br/>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../resources/js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        let tableBody = document.querySelector(".tbody-users");
+
+        //ask data from server
+        fetch("/getData").then((employeesFound)=>{//route on server from mongoose
+            console.log(employeesFound)
+            employeesFound.json().then((collectionOfEmployees)=>{
+
+                console.log(collectionOfEmployees.employeesFound)
+                for(let oneEmployee of collectionOfEmployees.employeesFound){
+
+                    let element = document.createElement("p")
+                    element.innerHTML = oneEmployee.employeeFirstName + " " + oneEmployee.employeeLastName
+                    document.getElementById("container").append(element);
+
+
+                    //ADd delete button
+                    let deleteButton = document.createElement("button")
+                    deleteButton.innerText = "Delete Employee"
+                    deleteButton.addEventListener("click",()=>{
+
+                        location.reload();
+                        fetch("/deleteEmployee",{
+                            
+                            method:"POST",
+                            
+                            headers:{
+                                "Content-type": "application/json"
+                            },
+
+                            body:JSON.stringify({
+                                //Information being retreived from food in database
+                                _id:oneEmployee._id, //id of food button
+                                employeeFirstName:oneEmployee.employeeFirstName,
+                                employeeLastName:oneEmployee.employeeLastName,
+                                employeeDepartment:oneEmployee.employeeDepartment,
+                                employeeStartDate:oneEmployee.employeeStartDate,
+                                employeeJobTitle:oneEmployee.employeeJobTitle,
+                                employeeSalary:oneEmployee.employeeSalary
+
+                            })
+
+                        })
+                    })
+
+
+
+                     //ADd Update button
+                     let updateButton = document.createElement("button")
+                     updateButton.innerText = "Update Employee"
+                     updateButton.addEventListener("click",()=>{
+
+                        let id = oneEmployee._id
+                        let employeeFirstName = oneEmployee.employeeFirstName
+                        let employeeLastName = oneEmployee.employeeLastName
+                        let employeeDepartment = oneEmployee.employeeDepartment
+                        let employeeStartDate = oneEmployee.employeeStartDate
+                        let employeeJobTitle = oneEmployee.employeeJobTitle
+                        let employeeSalary = oneEmployee.employeeSalary
+
+
+                        let encryptedURLVariableStrings = btoa(`_id=${id}&employeeFirstName=${employeeFirstName}&employeeLastName=${employeeLastName}&employeeDepartment=${employeeDepartment}&employeeStartDate=${employeeStartDate}&employeeJobTitle=${employeeJobTitle}&employeeSalary=${employeeSalary}`)
+                        //alert(btoa(variableStrings));
+
+                       // alert(variableStrings)
+
+                       window.location = `/updateEmployee.html?${encryptedURLVariableStrings}`;
+                        
+  
+                    })
+
+                    element.appendChild(updateButton)
+                    element.appendChild(deleteButton)
+
+
+
+
+
+                    let tr_element = document.createElement("tr");
+                    let td_employeeID_element = document.createElement("td");
+                    let td_employeeFirstName_element = document.createElement("td");
+                    let td_employeeLastName_element = document.createElement("td");
+                    let td_employeeDepartment_element = document.createElement("td");
+                    let td_employeeStartDate_element = document.createElement("td");
+                    let td_employeeJobTitle_element = document.createElement("td");
+                    let td_employeeSalary_element = document.createElement("td");
+                    let td_employeeUpdateButton = document.createElement("td");
+                    let td_employeeDeleteButton = document.createElement("td");
+
+                    td_employeeUpdateButton.style.width = "60px";
+                    td_employeeDeleteButton.style.width = "6px";
+
+                    td_employeeID_element.innerText = oneEmployee._id
+                    td_employeeFirstName_element.innerText = oneEmployee.employeeFirstName
+                    td_employeeLastName_element.innerText = oneEmployee.employeeLastName
+                    td_employeeDepartment_element.innerText = oneEmployee.employeeDepartment
+                    td_employeeStartDate_element.innerText = oneEmployee.employeeStartDate
+                    td_employeeJobTitle_element.innerText = oneEmployee.employeeJobTitle
+                    td_employeeSalary_element.innerText = oneEmployee.employeeSalary
+                    td_employeeUpdateButton.appendChild(updateButton)
+                    td_employeeDeleteButton.appendChild(deleteButton)
+
+                    tr_element.appendChild(td_employeeID_element)
+                    tr_element.appendChild(td_employeeFirstName_element)
+                    tr_element.appendChild(td_employeeLastName_element)
+                    tr_element.appendChild(td_employeeDepartment_element)
+                    tr_element.appendChild(td_employeeStartDate_element)
+                    tr_element.appendChild(td_employeeJobTitle_element)
+                    tr_element.appendChild(td_employeeSalary_element)
+                    tr_element.appendChild(td_employeeUpdateButton)
+                    tr_element.appendChild(td_employeeDeleteButton)
+
+
+                    tableBody.appendChild(tr_element)
+
+
+
+                }
+            })
+        }) 
+    </script>
+    </div>
+</body>
+</html>

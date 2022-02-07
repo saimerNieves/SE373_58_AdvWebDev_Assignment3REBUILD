@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Advanced Web Developement</title>
+
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="../resources/css/styles.css" rel="stylesheet" />
+
+        <style>
+            .indexContent{
+                margin-top:7%;
+                height:auto;
+            }
+
+            
+            body{
+                margin-top:20vh;
+            }
+        </style>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/index">Adv Web</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="form">Form</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="indexContent mb-0">
+    <div id="container">
+        
+        <h1>Enter a new Employee</h1>
+        <nav>
+            <a href="#">Enter Food</a>
+            <a href="employeeList.html">Look at food</a>
+            <a href="updateEmployee.html">Update Employee</a>
+
+        </nav>
+        <form action="/saveEmployee" method="post">
+
+            <span id="err" style="color:red;"></span>
+            <br>
+            <br>
+            <label for="employeeFirstName">Enter your FirstName here:</label>
+            <br>
+            <input type="text" name="employeeFirstName" id="employeeFirstName" placeholder="">
+
+
+            <br>
+            <br>
+            <label for="employeeLastName">Enter your LastName here:</label>
+            <br>
+            <input type="text" name="employeeLastName" id="employeeLastName" placeholder="">
+
+
+            <br>
+            <br>
+            <label for="employeeDepartment">Enter your DepartmentName here:</label>
+            <br>
+            <input type="text" name="employeeDepartment" id="employeeDepartment" placeholder="">
+
+
+            <br>
+            <br>
+            <label for="employeeStartDate">Enter your StartDate here:</label>
+            <br>
+            <input type="date" name="employeeStartDate" id="employeeStartDate" placeholder="">
+
+
+            <br>
+            <br>
+            <label for="employeeJobTitle">Enter your Title here:</label>
+            <br>
+            <input type="text" name="employeeJobTitle" id="employeeJobTitle" placeholder="">
+
+
+            <br>
+            <br>
+            <label for="employeeSalary">Enter your Salary here:</label>
+            <br>
+            <input type="text" name="employeeSalary" id="employeeSalary" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+
+            <br>
+            <button type="submit">Submit Food to Database</button>
+        </form>
+
+
+
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../resources/js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</section>
+</body>
+</html>
