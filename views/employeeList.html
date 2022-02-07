@@ -32,24 +32,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/form">Form</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="index.html">Add Employee</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Look At Employees</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div id="container"> 
-
+        <br><center>
     <h1>Here is your list of Employees</h1>
-    <nav>
-        <a href="index.html">Enter Food</a>
-        <a href="#">Look at food</a>
-
-    </nav>
 
 
-    <br><center><h4>Jordan the data below is the same JSON data but passed through variables from the server</h4></center><br>
+    <h4>Jordan the data below is the same JSON data but passed through variables from the server</h4></center><br>
     <table class="table">
         <thead>
         <tr>
@@ -63,13 +58,6 @@
         </tr>
         </thead>
         <tbody class="tbody-users">
-            <td>h</td>
-            <td>ghj</td>
-            <td>ghj</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tbody>
     </table>
 
@@ -104,10 +92,6 @@
 
                 console.log(collectionOfEmployees.employeesFound)
                 for(let oneEmployee of collectionOfEmployees.employeesFound){
-
-                    let element = document.createElement("p")
-                    element.innerHTML = oneEmployee.employeeFirstName + " " + oneEmployee.employeeLastName
-                    document.getElementById("container").append(element);
 
 
                     //ADd delete button
@@ -164,10 +148,6 @@
                         
   
                     })
-
-                    element.appendChild(updateButton)
-                    element.appendChild(deleteButton)
-
 
 
 

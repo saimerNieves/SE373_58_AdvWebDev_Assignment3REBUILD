@@ -82,7 +82,17 @@ app.post("/updateEmployee", (request, response)=>{
  
 
     let searchQueryID = {_id: request.body._id}
-    let updatedInfo = { $set: {employeeFirstName: request.body.employeeFirstName ,employeeLastName: request.body.employeeLastName } };
+    let updatedInfo = { 
+        $set: {
+            employeeFirstName: request.body.employeeFirstName,
+            employeeLastName: request.body.employeeLastName,
+            employeeDepartment: request.body.employeeDepartment,
+            employeeStartDate: request.body.employeeStartDate,
+            employeeJobTitle: request.body.employeeJobTitle,
+            employeeSalary: request.body.employeeSalary
+       
+        } 
+    };
 
     console.log("HERE" + request.body._id)
     console.log(updatedInfo)
@@ -95,7 +105,7 @@ app.post("/updateEmployee", (request, response)=>{
 
     });
 
-    response.redirect("foodlist.html")
+    response.redirect("employeeList.html")
 })
 
 
